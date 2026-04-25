@@ -3,140 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 | אנליטיקה מתקדמת</title>
+    <title>AAA365 | פרימיום אנליטיקה</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Assistant', sans-serif; background-color: #030406; color: #e2e8f0; position: relative; min-h: 100vh; }
-        
-        /* תמונת רקע איכותית של אצטדיון כדורסל מודרני מטושטש */
+        body { font-family: 'Assistant', sans-serif; background: #020305; color: #fff; min-h: 100vh; overflow-x: hidden; }
         body::before {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1519861531473-9200262188bf?q=80&w=2000');
-            background-size: cover; background-position: center;
-            filter: blur(15px) brightness(0.15); /* טשטוש דרמטי והכהיה */
-            z-index: -1;
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, #1e293b 0%, #020305 60%);
+            z-index: -1; opacity: 0.8;
         }
-
-        .glass { background: rgba(10, 15, 25, 0.5); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.04); cursor: pointer; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
-        .glass:hover { background: rgba(20, 30, 45, 0.7); transform: translateY(-3px); border-color: rgba(255,255,255,0.08); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
-        
-        /* קווי הפרדה דקים ויוקרתיים */
-        .nba-border { border-right: 3px solid #fbbf24; }
-        .math-border { border-right: 3px solid #10b981; }
-        .league-border { border-right: 3px solid #3b82f6; }
-        
-        .hidden-content { display: none; animation: slideDownFade 0.5s ease-out; }
-        @keyframes slideDownFade { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .premium-text { background: linear-gradient(135deg, #fff 0%, #a1a1a1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .active-status { background: rgba(16, 185, 129, 0.15); color: #34d399; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .category-card:hover { background: rgba(255, 255, 255, 0.06); transform: scale(1.01); }
+        .status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; }
+        .tip-box { background: rgba(0, 0, 0, 0.3); border-right: 2px solid; border-radius: 12px; }
     </style>
 </head>
-<body class="pb-24 p-5 md:p-10">
-    <div class="max-w-xl mx-auto">
-        <header class="pt-12 pb-12 text-center relative">
-            <h1 class="text-4xl font-extrabold tracking-tighter text-white mb-2">AAA<span class="text-amber-400">365</span> <span class="text-xs font-light tracking-widest text-gray-600 uppercase">ELITE</span></h1>
-            <div class="inline-flex items-center gap-2 bg-white/5 px-4 py-1.5 rounded-full border border-white/5">
-                <span class="relative flex h-2 w-2"><span class="animate-ping position: absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span>
-                <p class="text-gray-400 text-sm font-medium">אנליטיקה בזמן אמת | קופה: <span class="font-bold text-white">1,000₪</span></p>
+<body class="p-6 md:p-12">
+    <div class="max-w-2xl mx-auto">
+        <header class="mb-16 text-right">
+            <h1 class="text-5xl font-extrabold tracking-tighter mb-2">AAA<span class="text-amber-500">365</span></h1>
+            <div class="flex items-center gap-3">
+                <div class="status-dot animate-pulse"></div>
+                <p class="text-gray-500 text-sm font-light tracking-widest uppercase">מערכת סריקה פעילה | קופה: 1,000₪</p>
             </div>
         </header>
 
-        <div class="space-y-5">
-            <div id="nba-card" onclick="showTip('nba')" class="glass rounded-3xl p-7 nba-border relative overflow-hidden">
-                <div class="flex justify-between items-center relative z-10">
-                    <div class="flex items-center gap-3">
-                        <span class="text-2xl">🏀</span>
-                        <h2 class="text-lg font-bold premium-text tracking-tight">המלצת NBA יומית</h2>
+        <div class="space-y-6">
+            <div onclick="toggle('nba')" class="glass-panel category-card rounded-3xl p-8 cursor-pointer">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="text-3xl">🏀</span>
+                        <h2 class="text-xl font-bold tracking-tight">טפסי NBA להיום</h2>
                     </div>
-                    <span id="nba-status" class="text-xs text-gray-500 font-medium px-3 py-1 rounded-full bg-white/5">לחץ לצפייה</span>
+                    <span id="nba-count" class="bg-amber-500/10 text-amber-500 text-xs px-3 py-1 rounded-full font-bold">0 טפסים</span>
                 </div>
-                
-                <div id="nba-content" class="hidden-content mt-7 border-t border-white/5 pt-6 relative z-10">
-                    <p class="text-xs text-gray-500 mb-1 font-semibold">המשחק</p>
-                    <h3 id="nba-match" class="text-2xl font-extrabold text-white mb-4 leading-tight"></h3>
-                    
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-white/5 p-4 rounded-xl border border-white/5">
-                            <span class="block text-xs text-gray-500 font-medium mb-1">ההימור המומלץ</span>
-                            <span id="nba-pick" class="text-lg font-bold text-amber-400"></span>
-                        </div>
-                        <div class="bg-white/5 p-4 rounded-xl border border-white/5 text-center">
-                            <span class="block text-xs text-gray-500 font-medium mb-1">יחס ממוצע</span>
-                            <span id="nba-odds" class="text-xl font-extrabold text-white"></span>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-emerald-500/5 p-5 rounded-2xl border border-emerald-500/10 flex justify-between items-center">
-                        <span class="text-sm text-gray-300 font-medium">סכום השקעה מומלץ (קלי):</span>
-                        <span id="nba-stake" class="text-2xl font-extrabold text-emerald-400"></span>
-                    </div>
-                </div>
+                <div id="nba-list" class="hidden mt-8 space-y-4"></div>
             </div>
 
-            <div id="math-card" onclick="showTip('math')" class="glass rounded-3xl p-7 math-border relative overflow-hidden">
-                <div class="flex justify-between items-center relative z-10">
-                    <div class="flex items-center gap-3">
-                        <span class="text-2xl">💎</span>
-                        <h2 class="text-lg font-bold premium-text tracking-tight">מצוינות מתמטית (9.8/10)</h2>
+            <div onclick="toggle('math')" class="glass-panel category-card rounded-3xl p-8 cursor-pointer">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="text-3xl">💎</span>
+                        <h2 class="text-xl font-bold tracking-tight">מצוינות מתמטית (9.5+)</h2>
                     </div>
-                    <span id="math-status" class="text-xs text-gray-500 font-medium px-3 py-1 rounded-full bg-white/5">לחץ לצפייה</span>
+                    <span id="math-count" class="bg-emerald-500/10 text-emerald-500 text-xs px-3 py-1 rounded-full font-bold">0 טפסים</span>
                 </div>
-                <div id="math-content" class="hidden-content mt-7 border-t border-white/5 pt-6 relative z-10">
-                    </div>
+                <div id="math-list" class="hidden mt-8 space-y-4"></div>
             </div>
 
-            <div id="league-card" onclick="showTip('league')" class="glass rounded-3xl p-7 league-border relative overflow-hidden">
-                <div class="flex justify-between items-center relative z-10">
-                    <div class="flex items-center gap-3">
-                        <span class="text-2xl">⚽</span>
-                        <h2 class="text-lg font-bold premium-text tracking-tight">ליגות בכירות בעולם</h2>
+            <div onclick="toggle('league')" class="glass-panel category-card rounded-3xl p-8 cursor-pointer">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-4">
+                        <span class="text-3xl">⚽</span>
+                        <h2 class="text-xl font-bold tracking-tight">ליגות בכירות בעולם</h2>
                     </div>
-                    <span id="league-status" class="text-xs text-gray-500 font-medium px-3 py-1 rounded-full bg-white/5">לחץ לצפייה</span>
+                    <span id="league-count" class="bg-blue-500/10 text-blue-500 text-xs px-3 py-1 rounded-full font-bold">0 טפסים</span>
                 </div>
-                <div id="league-content" class="hidden-content mt-7 border-t border-white/5 pt-6 relative z-10">
-                    </div>
+                <div id="league-list" class="hidden mt-8 space-y-4"></div>
             </div>
         </div>
 
-        <button class="w-full mt-16 py-5 glass rounded-2xl border border-white/5 text-gray-600 text-sm font-bold tracking-widest uppercase hover:text-white transition-colors flex items-center justify-center gap-3">
-            <span>📜</span> ארכיון תוצאות והמלצות (בקרוב)
-        </button>
+        <footer class="mt-20 text-center opacity-30 text-xs font-light tracking-widest uppercase">
+            &copy; AAA365 ELITE ALGORITHM V2.5
+        </footer>
     </div>
 
     <script>
-        const types = ['nba', 'math', 'league'];
+        function toggle(id) {
+            const el = document.getElementById(id + '-list');
+            el.classList.toggle('hidden');
+        }
 
-        function showTip(type) {
-            types.forEach(t => {
-                document.getElementById(t + '-content').style.display = 'none';
-                document.getElementById(t + '-status').innerText = 'לחץ לצפייה';
-                document.getElementById(t + '-status').classList.remove('active-status');
+        async function load() {
+            const res = await fetch('/api/get-tips');
+            const data = await res.json();
+            const tips = data.tips;
+
+            const cats = { nba: '#f59e0b', math: '#10b981', league: '#3b82f6' };
+
+            Object.keys(cats).forEach(cat => {
+                const list = document.getElementById(cat + '-list');
+                const count = document.getElementById(cat + '-count');
+                const filtered = tips.filter(t => t.cat === cat);
+                
+                count.innerText = filtered.length + " טפסים מזוהים";
+                list.innerHTML = filtered.map(t => `
+                    <div class="tip-box p-5 border-r-[${cats[cat]}] bg-white/5 animate-in fade-in slide-in-from-top-2 duration-500" style="border-color: ${cats[cat]}">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-lg font-bold text-white">${t.m}</h4>
+                                <p class="text-amber-500 font-bold mt-1">${t.p} <span class="text-gray-500 font-normal">@ ${t.o}</span></p>
+                            </div>
+                            <span class="text-[10px] bg-white/10 px-2 py-1 rounded text-gray-400 font-mono">VAL: ${t.r}</span>
+                        </div>
+                        <div class="flex justify-between items-center pt-3 border-t border-white/5">
+                            <span class="text-xs text-gray-500 italic">השקעה מומלצת מ-1,000₪:</span>
+                            <span class="text-xl font-black text-white">${t.s}</span>
+                        </div>
+                    </div>
+                `).join('');
             });
-            document.getElementById(type + '-content').style.display = 'block';
-            document.getElementById(type + '-status').innerText = 'פעיל';
-            document.getElementById(type + '-status').classList.add('active-status');
         }
-
-        async function loadData() {
-            try {
-                const res = await fetch('/api/get-tips');
-                const data = await res.json();
-                const tips = data.tips;
-
-                // עדכון תוכן NBA בעברית
-                document.getElementById('nba-match').innerText = tips[0].match;
-                document.getElementById('nba-pick').innerText = tips[0].pick;
-                document.getElementById('nba-odds').innerText = tips[0].odds;
-                document.getElementById('nba-stake').innerText = tips[0].stake;
-                
-                // כאן יש להוסיף את פונקציות העדכון למתמטי ולליגות הבכירות (הקוד כבר מוכן, רק צריך נתונים מהמנוע)
-                
-            } catch (e) { console.log("שגיאה בטעינת הנתונים"); }
-        }
-        loadData();
+        load();
+        setInterval(load, 60000);
     </script>
 </body>
 </html>
