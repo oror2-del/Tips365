@@ -3,91 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tips 365 - Aaa365 Engine</title>
+    <title>Aaa365 Elite Tips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #d4af37; --bg: #0a0a0a; --card: #1a1a1a; }
-        body { background-color: var(--bg); color: white; font-family: 'Segoe UI', system-ui; margin: 0; padding: 15px; text-align: center; }
-        header { padding: 30px 0; border-bottom: 2px solid var(--gold); margin-bottom: 25px; }
-        h1 { color: var(--gold); font-size: 2.5rem; margin: 0; letter-spacing: 2px; }
-        .live-indicator { color: #4caf50; font-size: 0.9rem; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        
-        .strategy-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
-        .card { background: var(--card); border: 1px solid #333; border-radius: 15px; padding: 20px; position: relative; overflow: hidden; }
-        .card.active { border-color: var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
-        .badge { position: absolute; top: 0; left: 0; background: var(--gold); color: black; padding: 5px 15px; font-weight: bold; border-bottom-right-radius: 15px; font-size: 0.8rem; }
-        
-        .card-title { font-size: 1.4rem; color: var(--gold); margin: 15px 0 20px 0; font-weight: bold; }
-        .match-row { background: #252525; padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border-right: 4px solid var(--gold); }
-        .match-info { font-weight: 500; }
-        .selection { background: var(--gold); color: black; padding: 2px 10px; border-radius: 4px; font-weight: 900; }
-        
-        .footer-info { margin-top: 20px; padding-top: 15px; border-top: 1px solid #333; display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; }
-        .btn-send { background: #25d366; color: white; display: block; padding: 12px; border-radius: 10px; text-decoration: none; margin-top: 15px; font-weight: bold; transition: 0.3s; }
-        .btn-send:hover { opacity: 0.8; }
+        body { font-family: 'Assistant', sans-serif; background-color: #0f172a; color: white; }
+        .card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .nba-gold { border-left: 4px solid #fbbf24; }
+        .top-choice { border-left: 4px solid #38bdf8; }
     </style>
 </head>
-<body>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Aaa365 Elite</h1>
+            <p class="text-slate-400 mt-2">אלגוריתם חכם לסריקת ערך (Value) בווינר ובעולם</p>
+        </header>
 
-<header>
-    <h1>TIPS 365</h1>
-    <div class="live-indicator"><div class="dot"></div> מערכת Aaa365 סורקת כעת...</div>
-</header>
+        <section class="mb-8">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <span class="text-yellow-400">🏀</span> NBA Daily (הבחירה החזקה ביותר)
+            </h2>
+            <div id="nba-container" class="grid gap-4">
+                </div>
+        </section>
 
-<div class="strategy-container" id="main-content">
-    <div class="card active">
-        <div class="badge">מדד 8.9+</div>
-        <div class="card-title">טופס 1: ה"עוגן" המנצח</div>
-        <div id="anchor-matches">
-            <div class="match-row">
-                <span class="match-info">באיירן מינכן - ריאל מדריד</span>
-                <span class="selection">BTTS</span>
-            </div>
-            <div class="match-row">
-                <span class="match-info">פילדלפיה 76 - ניו יורק ניקס</span>
-                <span class="selection">1</span>
-            </div>
-        </div>
-        <div class="footer-info">
-            <span>סכום: 400 ₪</span>
-            <span style="color: var(--gold);">זכייה: 1,040 ₪</span>
-        </div>
-        <a href="https://wa.me/?text=טיפ עוגן מ-Tips365..." class="btn-send">שלח לאחי בוואטסאפ</a>
+        <section class="mb-12">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <span class="text-blue-400">⚽</span> Top Choice (משחקים נבחרים)
+            </h2>
+            <div id="top-container" class="grid md:grid-cols-2 gap-4">
+                </div>
+        </section>
+
+        <section class="mt-16 pt-8 border-t border-slate-700">
+            <h2 class="text-xl font-bold mb-4 text-slate-400 flex items-center gap-2">
+                <span class="text-slate-500">📜</span> ארכיון טיפים יומי
+            </h2>
+            <div id="archive-container" class="grid gap-3 opacity-60">
+                </div>
+        </section>
     </div>
 
-    <div class="card">
-        <div class="badge">מדד 8.2+</div>
-        <div class="card-title">טופס 2: שיטה 3/4 (הגנה)</div>
-        <div class="match-row"><span>ארסנל - באיירן</span><span class="selection">X2</span></div>
-        <div class="match-row"><span>סיטי - ריאל</span><span class="selection">Over 2.5</span></div>
-        <div class="match-row"><span>פילדלפיה (4.5+)</span><span class="selection">1</span></div>
-        <div class="match-row"><span>ל.א קליפרס</span><span class="selection">2</span></div>
-        <div class="footer-info">
-            <span>סכום: 400 ₪</span>
-            <span style="color: var(--gold);">פוטנציאל: 2,450 ₪</span>
-        </div>
-    </div>
+    <script>
+        async function loadTips() {
+            try {
+                const response = await fetch('/api/get-tips');
+                const data = await response.json();
+                
+                const nbaCont = document.getElementById('nba-container');
+                const topCont = document.getElementById('top-container');
+                const archCont = document.getElementById('archive-container');
 
-    <div class="card">
-        <div class="badge">סיכון גבוה - רווח ענק</div>
-        <div class="card-title">טופס 3: קומבו "Aaa365"</div>
-        <div style="font-style: italic; color: #888; margin-bottom: 10px;">כל 4 המשחקים בטור אחד</div>
-        <div class="footer-info">
-            <span>סכום: 200 ₪</span>
-            <span style="color: var(--gold);">זכייה: 1,560 ₪</span>
-        </div>
-    </div>
-</div>
+                // ניקוי המכולות
+                nbaCont.innerHTML = '';
+                topCont.innerHTML = '';
 
-<script>
-    // פונקציה לעדכון אוטומטי מהשרת - תופעל בכל פעם שהאלגוריתם יזהה משחק 8+
-    async function updateTips() {
-        console.log("Aaa365: Checking for new high-value tips...");
-        // כאן יתבצע החיבור ל-Render API בשלב הבא
-    }
-    setInterval(updateTips, 60000); // בדיקה כל דקה
-</script>
+                data.tips.forEach(tip => {
+                    const card = `
+                        <div class="card p-5 rounded-xl ${tip.category === 'NBA Daily' ? 'nba-gold' : 'top-choice'}">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-sm font-bold uppercase tracking-wider text-slate-400">${tip.category}</span>
+                                <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded text-xs font-bold">EV: ${tip.ev}</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-1">${tip.match}</h3>
+                            <p class="text-blue-300 font-bold text-lg">${tip.pick} @ ${tip.odds}</p>
+                            <div class="mt-4 flex justify-between items-center border-t border-white/5 pt-3">
+                                <span class="text-slate-400 text-sm italic">השקעה מומלצת (קלי):</span>
+                                <span class="text-white font-bold">${tip.stake}</span>
+                            </div>
+                        </div>
+                    `;
 
+                    if (tip.category === 'NBA Daily') {
+                        nbaCont.innerHTML += card;
+                    } else {
+                        topCont.innerHTML += card;
+                    }
+                });
+
+                // מילוי ארכיון (לדוגמה - יתמלא אוטומטית ככל שיעברו ימים)
+                archCont.innerHTML = '<p class="text-sm text-slate-500 italic">הארכיון מתעדכן בסיום כל יום משחקים...</p>';
+
+            } catch (e) {
+                console.error("טעינת נתונים נכשלה");
+            }
+        }
+        loadTips();
+        setInterval(loadTips, 60000); // רענון כל דקה
+    </script>
 </body>
 </html>
