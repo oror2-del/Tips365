@@ -3,60 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 | Premium</title>
+    <title>AAA365 | Premium Analytics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Assistant', sans-serif; background: #05070a; color: #fff; min-height: 100vh; position: relative; }
+        body { font-family: 'Assistant', sans-serif; background: #05070a; color: #fff; min-height: 100vh; overflow-x: hidden; }
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=2000') center/cover;
-            filter: blur(40px) brightness(0.2); z-index: -1;
+            background: radial-gradient(circle at top right, #1e293b 0%, #05070a 60%);
+            z-index: -1;
         }
-        .premium-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s ease; }
-        .premium-card:hover { border-color: rgba(255, 255, 255, 0.1); transform: translateY(-2px); }
-        .tip-entry { border-right: 4px solid; background: rgba(0,0,0,0.3); transition: all 0.3s; margin-bottom: 1rem; border-radius: 12px; }
-        .hidden-list { display: none; animation: slideIn 0.4s ease-out; }
+        .premium-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        .premium-card:hover { background: rgba(255, 255, 255, 0.06); transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.1); }
+        .tip-entry { border-right: 4px solid; background: rgba(0,0,0,0.3); margin-bottom: 1rem; border-radius: 12px; animation: slideIn 0.5s ease-out; }
+        .hidden-list { display: none; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .status-badge { font-size: 10px; padding: 2px 10px; border-radius: 99px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body class="p-6 md:p-12">
     <div class="max-w-xl mx-auto">
-        <header class="mb-12 text-center">
-            <h1 class="text-4xl font-black tracking-tighter mb-1">AAA<span class="text-amber-500">365</span></h1>
-            <p class="text-[10px] text-gray-500 tracking-[0.2em] uppercase font-bold">Smart Betting Ecosystem | קופה: 1,000₪</p>
+        <header class="mb-16 text-center">
+            <h1 class="text-5xl font-black tracking-tighter mb-2">AAA<span class="text-amber-500">365</span></h1>
+            <div class="flex items-center justify-center gap-3">
+                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span>
+                <p class="text-[10px] text-gray-500 tracking-[0.2em] font-bold">קופה: 1,000₪ | סריקה חיה</p>
+            </div>
         </header>
 
         <div class="space-y-4">
-            <div onclick="toggle('nba')" class="premium-card rounded-[2rem] p-8 cursor-pointer">
+            <div onclick="toggle('nba')" class="premium-card rounded-[2.5rem] p-8">
                 <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-4">
-                        <span class="text-2xl">🏀</span>
-                        <h2 class="text-lg font-bold">טפסי NBA</h2>
-                    </div>
-                    <span id="nba-count" class="text-[10px] bg-amber-500/10 text-amber-500 px-3 py-1 rounded-full border border-amber-500/20">מנתח...</span>
+                    <div class="flex items-center gap-4"><span class="text-3xl">🏀</span><h2 class="text-xl font-bold">טפסי NBA</h2></div>
+                    <span id="nba-count" class="status-badge bg-amber-500/10 text-amber-500 border border-amber-500/20">מנתח...</span>
                 </div>
                 <div id="nba-list" class="hidden-list mt-8"></div>
             </div>
 
-            <div onclick="toggle('math')" class="premium-card rounded-[2rem] p-8 cursor-pointer">
+            <div onclick="toggle('math')" class="premium-card rounded-[2.5rem] p-8">
                 <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-4">
-                        <span class="text-2xl">💎</span>
-                        <h2 class="text-lg font-bold">מצוינות מתמטית</h2>
-                    </div>
-                    <span id="math-count" class="text-[10px] bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20">מנתח...</span>
+                    <div class="flex items-center gap-4"><span class="text-3xl">💎</span><h2 class="text-xl font-bold">מצוינות מתמטית</h2></div>
+                    <span id="math-count" class="status-badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">מנתח...</span>
                 </div>
                 <div id="math-list" class="hidden-list mt-8"></div>
             </div>
 
-            <div onclick="toggle('league')" class="premium-card rounded-[2rem] p-8 cursor-pointer">
+            <div onclick="toggle('league')" class="premium-card rounded-[2.5rem] p-8">
                 <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-4">
-                        <span class="text-2xl">⚽</span>
-                        <h2 class="text-lg font-bold">ליגות בכירות</h2>
-                    </div>
-                    <span id="league-count" class="text-[10px] bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">מנתח...</span>
+                    <div class="flex items-center gap-4"><span class="text-3xl">⚽</span><h2 class="text-xl font-bold">ליגות בכירות</h2></div>
+                    <span id="league-count" class="status-badge bg-blue-500/10 text-blue-400 border border-blue-500/20">מנתח...</span>
                 </div>
                 <div id="league-list" class="hidden-list mt-8"></div>
             </div>
@@ -68,22 +63,23 @@
             const list = document.getElementById(id + '-list');
             list.style.display = (list.style.display === 'block') ? 'none' : 'block';
         }
-
         async function fetchTips() {
             try {
                 const r = await fetch('/api/get-tips');
                 const d = await r.json();
                 const colors = { nba: '#f59e0b', math: '#10b981', league: '#3b82f6' };
-
                 ['nba', 'math', 'league'].forEach(cat => {
                     const filtered = d.tips.filter(t => t.cat === cat);
                     document.getElementById(cat + '-count').innerText = filtered.length + " טפסים";
                     document.getElementById(cat + '-list').innerHTML = filtered.map(t => `
-                        <div class="tip-entry p-5" style="border-right-color: ${colors[cat]}">
-                            <h4 class="font-bold text-white text-md mb-2">${t.m}</h4>
+                        <div class="tip-entry p-6" style="border-right-color: ${colors[cat]}">
+                            <div class="flex justify-between items-start mb-4">
+                                <h4 class="font-bold text-white text-lg">${t.m}</h4>
+                                <span class="text-[9px] text-gray-500 font-mono">VAL: ${t.r}</span>
+                            </div>
                             <div class="flex justify-between items-end">
-                                <div><p class="text-amber-400 font-bold text-sm">${t.p}</p><p class="text-[10px] text-gray-500">יחס: ${t.o}</p></div>
-                                <div class="text-right"><p class="text-lg font-black text-white">${t.s}</p></div>
+                                <div><p class="text-amber-500 font-black text-md">${t.p}</p><p class="text-[11px] text-gray-500">יחס: ${t.o}</p></div>
+                                <div class="text-right"><p class="text-[9px] text-gray-500 uppercase font-bold">השקעה</p><p class="text-2xl font-black text-white">${t.s}</p></div>
                             </div>
                         </div>
                     `).join('');
