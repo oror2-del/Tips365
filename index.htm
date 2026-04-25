@@ -1,7 +1,73 @@
-<div onclick="alert('טפסי NBA בטעינה...')" class="premium-card p-6 flex items-center justify-between cursor-pointer active:scale-95 transition-all">
-    <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center text-2xl">🏀</div>
-        <span class="text-xl font-bold">טפסי NBA</span>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAA365 | Premium Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Assistant', sans-serif; background: #05070a; color: #fff; overflow-x: hidden; }
+        .premium-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; }
+        .modal { display: none; position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); }
+    </style>
+</head>
+<body class="p-6">
+    <div class="flex justify-between items-center mb-12">
+        <div>
+            <h1 class="text-4xl font-extrabold tracking-tighter italic">AAA365<span class="text-blue-500">.</span></h1>
+            <p class="text-gray-500 text-xs tracking-widest uppercase">Premium Analytics</p>
+        </div>
+        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+        </div>
     </div>
-    <span class="text-xs bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full border border-orange-500/30">מנתח...</span>
-</div>
+
+    <div class="space-y-4">
+        <div onclick="openModal()" class="premium-card p-6 flex items-center justify-between cursor-pointer active:scale-95 transition-all border-l-4 border-orange-500">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-3xl text-orange-500">🏀</div>
+                <div>
+                    <h2 class="text-xl font-bold">טפסי NBA</h2>
+                    <p class="text-green-500 text-xs font-bold">2 זכיות עודכנו ✅</p>
+                </div>
+            </div>
+            <div class="text-gray-600">◀</div>
+        </div>
+    </div>
+
+    <div id="nbaModal" class="modal p-6 overflow-y-auto">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl font-bold">דוח זכיות NBA</h2>
+            <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xl">✕</button>
+        </div>
+        
+        <div class="space-y-4">
+            <div class="premium-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-xs text-gray-500 italic">25/04/2026</span>
+                    <span class="bg-green-500/20 text-green-500 text-xs px-3 py-1 rounded-full border border-green-500/30">נכנס לקופה ✅</span>
+                </div>
+                <h3 class="text-xl font-bold mb-1">Denver Nuggets</h3>
+                <p class="text-gray-400 text-sm mb-4">סימון: 2 (ניצחון חוץ)</p>
+                <div class="text-3xl font-black text-white">2,760 <span class="text-sm font-normal text-gray-500">RUB</span></div>
+            </div>
+
+            <div class="premium-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-xs text-gray-500 italic">25/04/2026</span>
+                    <span class="bg-green-500/20 text-green-500 text-xs px-3 py-1 rounded-full border border-green-500/30">נכנס לקופה ✅</span>
+                </div>
+                <h3 class="text-xl font-bold mb-1">Orlando Magic (4+)</h3>
+                <p class="text-gray-400 text-sm mb-4">סימון: 1 (ניצחון בית)</p>
+                <div class="text-3xl font-black text-white">3,375 <span class="text-sm font-normal text-gray-500">RUB</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('nbaModal').style.display = 'block'; }
+        function closeModal() { document.getElementById('nbaModal').style.display = 'none'; }
+    </script>
+</body>
+</html>
