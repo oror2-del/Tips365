@@ -3,67 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAA365 | Premium Analytics</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;700;800&display=swap" rel="stylesheet">
+    <title>AAA365 - מערכת ניהול</title>
     <style>
-        body { font-family: 'Assistant', sans-serif; background: #05070a; color: #fff; overflow-x: hidden; }
-        .premium-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; }
-        .modal { display: none; position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); }
+        body { font-family: sans-serif; background: #121212; color: white; margin: 0; padding: 20px; text-align: center; }
+        .nav-menu { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .nav-btn { background: #2d2d2d; color: white; border: 2px solid #ff9900; padding: 10px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
+        .nav-btn.active { background: #ff9900; color: black; font-weight: bold; }
+        
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+
+        .card { background: #1e1e1e; padding: 20px; border-radius: 15px; border-right: 8px solid #ff9900; margin: 15px auto; width: 90%; max-width: 600px; text-align: right; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        h1 { color: #ff9900; margin-bottom: 30px; }
+        .archive-item { border-bottom: 1px solid #333; padding: 10px; font-size: 0.9em; color: #bbb; }
+        
+        input { width: 80%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; font-size: 1.1em; text-align: center; background: #333; color: white; border: 1px solid #444; }
+        .calc-res { background: #262626; padding: 20px; margin-top: 15px; border-radius: 12px; color: white; border: 1px solid #ff9900; line-height: 1.6; }
+        .method-row { display: flex; justify-content: space-between; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px dashed #444; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body class="p-6">
-    <div class="flex justify-between items-center mb-12">
-        <div>
-            <h1 class="text-4xl font-extrabold tracking-tighter italic">AAA365<span class="text-blue-500">.</span></h1>
-            <p class="text-gray-500 text-xs tracking-widest uppercase">Premium Analytics</p>
+<body>
+
+    <h1>AAA365 - Dashboard</h1>
+
+    <div class="nav-menu">
+        <button class="nav-btn active" onclick="openTab('live')">שידור חי</button>
+        <button class="nav-btn" onclick="openTab('archive')">ארכיון</button>
+        <button class="nav-btn" onclick="openTab('results')">תוצאות</button>
+        <button class="nav-btn" onclick="openTab('method')">מחשבון השיטה</button>
+    </div>
+
+    <div id="live" class="tab-content active">
+        <div class="card">
+            <h2>⚽ דוח בוקר עדכני</h2>
+            <div id="current-football">ארסנל - טוטנהאם: 1<br>מנצ'סטר סיטי - נוטינגהאם: 2</div>
         </div>
-        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center">
-            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+        <div class="card" style="border-right-color: #ff6600;">
+            <h2>🏀 NBA דוח ערב</h2>
+            <div id="current-nba">דנבר נאגטס: 2 (W2)</div>
         </div>
     </div>
 
-    <div class="space-y-4">
-        <div onclick="openModal()" class="premium-card p-6 flex items-center justify-between cursor-pointer active:scale-95 transition-all border-l-4 border-orange-500">
-            <div class="flex items-center gap-4">
-                <div class="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-3xl text-orange-500">🏀</div>
-                <div>
-                    <h2 class="text-xl font-bold">טפסי NBA</h2>
-                    <p class="text-green-500 text-xs font-bold">2 זכיות עודכנו ✅</p>
-                </div>
-            </div>
-            <div class="text-gray-600">◀</div>
+    <div id="archive" class="tab-content">
+        <h2>ארכיון תחזיות</h2>
+        <div class="card">
+            <div class="archive-item">25/04/2026: מנצ'סטר סיטי - נוטינגהאם (הסתיים)</div>
+            <div class="archive-item">24/04/2026: ריאל מדריד - ברצלונה (הסתיים)</div>
+            <p style="font-size: 0.8em; color: #666;">נתונים ישנים עוברים לכאן אוטומטית.</p>
         </div>
     </div>
 
-    <div id="nbaModal" class="modal p-6 overflow-y-auto">
-        <div class="flex justify-between items-center mb-10">
-            <h2 class="text-3xl font-bold">דוח זכיות NBA</h2>
-            <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xl">✕</button>
+    <div id="results" class="tab-content">
+        <h2>לוח תוצאות ורווחים</h2>
+        <div class="card" style="border-right-color: #00ff00;">
+            <div class="method-row"><span>סטטיסטיקה חודשית:</span> <span>78% הצלחה</span></div>
+            <div class="method-row"><span>רווח נקי משוער:</span> <span style="color: #00ff00;">4,250 ₪</span></div>
         </div>
-        <div class="space-y-4">
-            <div class="premium-card p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-xs text-gray-500">25/04/2026</span>
-                    <span class="bg-green-500/20 text-green-500 text-xs px-3 py-1 rounded-full">נכנס לקופה ✅</span>
-                </div>
-                <h3 class="text-xl font-bold mb-1">Denver Nuggets</h3>
-                <div class="text-3xl font-black text-white">2,760 <span class="text-sm font-normal text-gray-500">RUB</span></div>
-            </div>
-            <div class="premium-card p-6">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-xs text-gray-500">25/04/2026</span>
-                    <span class="bg-green-500/20 text-green-500 text-xs px-3 py-1 rounded-full">נכנס לקופה ✅</span>
-                </div>
-                <h3 class="text-xl font-bold mb-1">Orlando Magic (4+)</h3>
-                <div class="text-3xl font-black text-white">3,375 <span class="text-sm font-normal text-gray-500">RUB</span></div>
-            </div>
+    </div>
+
+    <div id="method" class="tab-content">
+        <div class="card">
+            <h2>מחשבון חלוקת ה-1000</h2>
+            <p>הכנס את היחס הכולל של הטופס:</p>
+            <input type="number" id="odds" step="0.01" placeholder="לדוגמה: 3.50">
+            <button onclick="calculateMethod()" class="nav-btn" style="background:#ff9900; color:black; width: 100%; margin-top: 10px;">חשב חלוקת השקעה</button>
+            
+            <div id="resultBox" class="calc-res" style="display:none;"></div>
         </div>
     </div>
 
     <script>
-        function openModal() { document.getElementById('nbaModal').style.display = 'block'; }
-        function closeModal() { document.getElementById('nbaModal').style.display = 'none'; }
+        function openTab(tabName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("tab-content");
+            for (i = 0; i < x.length; i++) { x[i].style.display = "none"; }
+            tablinks = document.getElementsByClassName("nav-btn");
+            for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.classList.add("active");
+        }
+
+        function calculateMethod() {
+            let odds = document.getElementById('odds').value;
+            if(!odds || odds <= 0) {
+                alert("נא להזין יחס תקין");
+                return;
+            }
+
+            let target = 1000;
+            // חלוקה לפי השיטה: עוגן 50%, קומבו 30%, 3 מ-4 20%
+            let anchor = (target * 0.5) / odds;
+            let combo = (target * 0.3) / odds;
+            let backup = (target * 0.2) / odds;
+            let total = anchor + combo + backup;
+
+            document.getElementById('resultBox').style.display = "block";
+            document.getElementById('resultBox').innerHTML = `
+                <div style="color: #ff9900; font-weight: bold; margin-bottom: 15px;">תוכנית השקעה ליעד 1,000 ₪:</div>
+                <div class="method-row"><span>📍 עוגן (סולידי):</span> <span><b>${anchor.toFixed(0)} ₪</b></span></div>
+                <div class="method-row"><span>🔥 קומבו (אגרסיבי):</span> <span><b>${combo.toFixed(0)} ₪</b></span></div>
+                <div class="method-row"><span>🛡️ 3 מ-4 (גיבוי):</span> <span><b>${backup.toFixed(0)} ₪</b></span></div>
+                <div class="method-row" style="border:none; margin-top:10px; color:#00ff00;"><span>💰 סה"כ להשקעה:</span> <span><b>${total.toFixed(0)} ₪</b></span></div>
+            `;
+        }
     </script>
 </body>
 </html>
